@@ -69,7 +69,7 @@ mal8W = mal8W %>%
 
 mozmal %>%
   group_by(Region) %>%
-  summarise(max = max(malaria))
+  summarise(sum(malaria))
 mozmal %>%
   group_by(Region) %>%
   summarise(mean(tavg))
