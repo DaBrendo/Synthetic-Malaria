@@ -1,5 +1,11 @@
 library(tidyverse)
 library(modelr)
+library(RColorBrewer)
+library(sp)
+library(maptools) 
+library(lattice)
+library(latticeExtra)
+library(rgdal)
 
 malload = read.csv("./MozSyntheticMalaria.csv")
 
@@ -65,14 +71,3 @@ mal8W = mal8W %>%
   pabove50LAG8W = lag(pabove50, 8, order_by = District),
   pabove100LAG8W = lag(pabove100, 8, order_by = District)) %>%
   drop_na()
-
-
-mozmal %>%
-  group_by(Region) %>%
-  summarise(sum(malaria))
-mozmal %>%
-  group_by(Region) %>%
-  summarise(mean(tavg))
-mozmal %>%
-  group_by(Region) %>%
-  summarise(mean(rainTot))
