@@ -65,3 +65,14 @@ mal8W = mal8W %>%
   pabove50LAG8W = lag(pabove50, 8, order_by = District),
   pabove100LAG8W = lag(pabove100, 8, order_by = District)) %>%
   drop_na()
+
+
+mozmal %>%
+  group_by(Region) %>%
+  summarise(max = max(malaria))
+mozmal %>%
+  group_by(Region) %>%
+  summarise(mean(tavg))
+mozmal %>%
+  group_by(Region) %>%
+  summarise(mean(rainTot))
