@@ -1,0 +1,1 @@
+poly1 = readShapeSpatial("Mozambique_admin1.shp", IDvar = "NAME1")
