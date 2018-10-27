@@ -1,8 +1,9 @@
 library(tidyverse)
+library(modelr)
 
 malload = read.csv("./MozSyntheticMalaria.csv")
 
-mozmal = subset(malload, year!=2017)
+mozmal = subset(malload, Epiyear!=2017)
 
 mozmal$cpt = (mozmal$malaria / (mozmal$Population_UN * mozmal$u5weight)) * 1000
 
@@ -64,31 +65,3 @@ mal8W = mal8W %>%
   pabove50LAG8W = lag(pabove50, 8, order_by = District),
   pabove100LAG8W = lag(pabove100, 8, order_by = District)) %>%
   drop_na()
-
-ggplot(mal2W, aes(rainTotLAG2W, malaria)) + 
-  geom_point(aes(colour = Region))
-# rainfall is very skewed, so let's take the sqrt
-ggplot(mal2W, aes(sqrt(rainTotLAG2W), malaria)) + 
-  geom_point(aes(colour = Region))
-# temperature
-ggplot(mal2W, aes(tavgLAG2W, malaria)) + 
-  geom_point(aes(colour = Region))
-# rh
-ggplot(mal2W, aes(rhLAG2W, malaria)) + 
-  geom_point(aes(colour = Region))
-
-# Rainfall
-ggplot(mal2W, aes(sqrt(rainTotLAG2W), malaria, colour = Region)) + 
-  geom_point() + 
-  geom_smooth(method = 'lm') 
-ggplot(mal2W, aes(sqrt(rainTotLAG2W), malaria, colour = Region)) + 
-  geom_point() + 
-  geom_smooth() 
-
-# Temperature
-ggplot(mal2W, aes(tavgLAG2W, malaria, colour = Region)) + 
-  geom_point() + 
-  geom_smooth(method = 'lm') 
-ggplot(mal2W, aes(tavgLAG2W, malaria, colour = Region)) + 
-  geom_point() + 
-  geom_smooth() 
